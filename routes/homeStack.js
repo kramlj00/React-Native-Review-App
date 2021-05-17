@@ -2,6 +2,7 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from '../screens/home';
 import ReviewDetails from '../screens/reviewDetails';
+import Header from '../shared/header'
 
 const HomeStack = createStackNavigator();
 
@@ -18,7 +19,8 @@ export default function Navigator() {
             }}
         >
              {/* the first one will show on the default screen */}
-            <HomeStack.Screen name="Home" component={Home} options={{title: 'GameZone'}}/>
+             {/* title prop expects a string, but headerTilte can take a function as a value which can return a componenet */}
+            <HomeStack.Screen name="Home" component={Home} options={{headerTitle: () => <Header/>}}/>
             <HomeStack.Screen name="ReviewDetails" component={ReviewDetails} options={{title: 'ReviewDetails'}}/>
         </HomeStack.Navigator>
     );

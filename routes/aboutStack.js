@@ -1,6 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import About from '../screens/about';
+import Header from '../shared/header'
 
 const AboutStack = createStackNavigator();
 
@@ -17,7 +18,7 @@ export default function Navigator() {
           }}
         >
              {/* the first one will show on the default screen */}
-            <AboutStack.Screen name="About" component={About} options={{title: 'About GameZone'}}/>
+            <AboutStack.Screen name="About" component={About} options={{headerTitle: () => <Header/>}}/>
         </AboutStack.Navigator>
     );
 }
