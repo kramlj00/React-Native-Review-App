@@ -9,10 +9,19 @@ const HomeStack = createStackNavigator();
 export default function Navigator() {
     return (
     <NavigationContainer>      
-        <HomeStack.Navigator>
+        <HomeStack.Navigator 
+        initialRouteName="Home" 
+        screenOptions={{
+            headerStyle: {
+              backgroundColor: '#eee',
+              height: 60,
+            },
+            headerTintColor: '#444',
+          }}
+        >
              {/* the first one will show on the default screen */}
-             <HomeStack.Screen name="Home" component={Home} />
-            <HomeStack.Screen name="ReviewDetails" component={ReviewDetails} />
+            <HomeStack.Screen name="Home" component={Home} options={{title: 'GameZone'}}/>
+            <HomeStack.Screen name="ReviewDetails" component={ReviewDetails} options={{title: 'ReviewDetails'}}/>
         </HomeStack.Navigator>
     </NavigationContainer>
     );
