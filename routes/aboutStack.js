@@ -5,7 +5,7 @@ import Header from '../shared/header'
 
 const AboutStack = createStackNavigator();
 
-export default function Navigator() {
+export default function Navigator({navigation}) {
     return (    
         <AboutStack.Navigator 
         initialRouteName="About" 
@@ -18,7 +18,7 @@ export default function Navigator() {
           }}
         >
              {/* the first one will show on the default screen */}
-            <AboutStack.Screen name="About" component={About} options={{headerTitle: () => <Header/>}}/>
+            <AboutStack.Screen name="About" component={About} options={{headerTitle: () => <Header navigation={navigation} title='About'/>}}/>
         </AboutStack.Navigator>
     );
 }

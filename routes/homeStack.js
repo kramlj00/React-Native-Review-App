@@ -6,7 +6,7 @@ import Header from '../shared/header'
 
 const HomeStack = createStackNavigator();
 
-export default function Navigator() {
+export default function Navigator({ navigation }) {
     return (     
         <HomeStack.Navigator 
             initialRouteName="Home" 
@@ -20,7 +20,7 @@ export default function Navigator() {
         >
              {/* the first one will show on the default screen */}
              {/* title prop expects a string, but headerTilte can take a function as a value which can return a componenet */}
-            <HomeStack.Screen name="Home" component={Home} options={{headerTitle: () => <Header/>}}/>
+            <HomeStack.Screen name="Home" component={Home} options={{headerTitle: () => <Header navigation={navigation} title='Home'/>}}/>
             <HomeStack.Screen name="ReviewDetails" component={ReviewDetails} options={{title: 'ReviewDetails'}}/>
         </HomeStack.Navigator>
     );
