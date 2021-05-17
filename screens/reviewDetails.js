@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button} from 'react-native';
+import { StyleSheet, Text, View, Image} from 'react-native';
 
-import { globalStyles } from '../styles/global'
+import { globalStyles, images } from '../styles/global'
 import Card from '../shared/card'
 
 // only components in homeStack.js can access navigation prop 
@@ -14,8 +14,22 @@ export default function ReviewDetails({ route }){
             <Card>
                 <Text>{title}</Text>
                 <Text>{body}</Text>
-                <Text>{rating}</Text>
+                <View style={styles.rating}>
+                    <Text>Game rating:</Text>
+                    <Image source={images.ratings[rating]}/>
+                </View>
             </Card>
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    rating: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        paddingTop: 16,
+        marginTop: 16,
+        borderTopWidth: 1,
+        borderTopColor: '#eee',
+    }
+})
