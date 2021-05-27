@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, FlatList, TouchableOpacity, Modal } from 'react-native';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity, Modal, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import Card from '../shared/card'
 import {MaterialIcons} from '@expo/vector-icons'
 
@@ -26,24 +26,26 @@ export default function Home({ navigation }){
             return [review, ...currentReviews];
         });
         // after submiting new review, modal will close
-        //setModalOpen(false);
+        setModalOpen(false);
     }
 
     return(
         <View style = {globalStyles.container}>
             <Modal visible={modalOpen} animationType='slide'>
-                <View style={styles.modalContent}>
-                    <MaterialIcons 
-                        name='close' 
-                        size={24}
-                        onPress={() => setModalOpen(false)}
-                        style={{...styles.modalToggle, ...styles.modalClosed}} /* applying multiple styles */
-                    />
-                    <ReviewForm addReview={addReview}/>
-                    
-                </View>
+                <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                    <View style={styles.modalContent}>
+                        <MaterialIcons 
+                            name='close' 
+                            size={24}
+                            onPress={() => setModalOpen(false)}
+                            style={{...styles.modalToggle, ...styles.modalClosed}} /* applying multiple styles */
+                        />
+                        <ReviewForm addReview={addReview}/>
+                        
+                    </View>
+                </TouchableWithoutFeedback>
             </Modal>
-
+            
             <MaterialIcons 
                 name='add' 
                 size={24}

@@ -10,7 +10,6 @@ export default function ReviewForm({ addReview }) {
       <Formik
         initialValues={{ title: "", body: "", rating: "" }}
         onSubmit={(values, actions) => {
-            actions.resetForm();
             addReview(values);
         }}
       >
