@@ -16,6 +16,19 @@ export default function Home({ navigation }){
         { title: 'Not So "Final" Fantasy', rating: 3, body: 'lorem ipsum', key: '3' },
     ])
 
+    const addReview = (review) => {
+        // this is not the best way to generate a key
+        // but chances of generating the same key are low
+        review.key = Math.random().toString();
+        setReviews((currentReviews) => {
+            // takes new review and all current reviews
+            // new review will apear at the top
+            return [review, ...currentReviews];
+        });
+        // after submiting new review, modal will close
+        setModalOpen(false);
+    }
+
     return(
         <View style = {globalStyles.container}>
             <Modal visible={modalOpen} animationType='slide'>
@@ -26,7 +39,7 @@ export default function Home({ navigation }){
                         onPress={() => setModalOpen(false)}
                         style={{...styles.modalToggle, ...styles.modalClosed}} /* applying multiple styles */
                     />
-                    <ReviewForm />
+                    <ReviewForm addReview={addReview}/>
                     
                 </View>
             </Modal>
