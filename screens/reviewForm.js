@@ -1,8 +1,16 @@
 import React from "react";
-import { StyleSheet, Text, View, TextInput, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Button,
+  FlatList,
+} from "react-native";
 import { globalStyles } from "../styles/global";
 import { Formik } from "formik";
 import * as yup from "yup";
+import FlatButton from "../shared/button";
 
 // create yup object for validation
 const reviewSchema = yup.object({
@@ -37,9 +45,11 @@ export default function ReviewForm({ addReview }) {
               placeholder="Review title"
               onChangeText={props.handleChange("title")} //this will update title property in values
               value={props.values.title}
-              onBlur={props.handleBlur('title')}
+              onBlur={props.handleBlur("title")}
             />
-            <Text style={globalStyles.errorText}>{props.touched.title && props.errors.title}</Text>
+            <Text style={globalStyles.errorText}>
+              {props.touched.title && props.errors.title}
+            </Text>
 
             <TextInput
               multiline
@@ -47,9 +57,11 @@ export default function ReviewForm({ addReview }) {
               placeholder="Review body"
               onChangeText={props.handleChange("body")} //this will update body property in values
               value={props.values.body}
-              onBlur={props.handleBlur('body')}
+              onBlur={props.handleBlur("body")}
             />
-            <Text style={globalStyles.errorText}>{props.touched.body && props.errors.body}</Text>
+            <Text style={globalStyles.errorText}>
+              {props.touched.body && props.errors.body}
+            </Text>
 
             <TextInput
               style={globalStyles.input}
@@ -57,17 +69,15 @@ export default function ReviewForm({ addReview }) {
               onChangeText={props.handleChange("rating")} //this will update rating property in values
               value={props.values.rating}
               keyboardType="numeric"
-              onBlur={props.handleBlur('rating')}
+              onBlur={props.handleBlur("rating")}
             />
-            <Text style={globalStyles.errorText}>{props.touched.rating && props.errors.rating}</Text>
+            <Text style={globalStyles.errorText}>
+              {props.touched.rating && props.errors.rating}
+            </Text>
 
             {/* onPress function will run onSubmit(values) function
                         it will grab all the values inside TextInput (all 3 properties) */}
-            <Button
-              title="submit"
-              color="maroon"
-              onPress={props.handleSubmit}
-            />
+            <FlatButton text="submit" onPress={props.handleSubmit} />
           </View>
         )}
       </Formik>
