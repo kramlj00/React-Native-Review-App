@@ -26,7 +26,7 @@ export default function Home({ navigation }){
             return [review, ...currentReviews];
         });
         // after submiting new review, modal will close
-        setModalOpen(false);
+        //setModalOpen(false);
     }
 
     return(
